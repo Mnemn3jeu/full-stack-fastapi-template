@@ -1,14 +1,13 @@
 # main.py
 
 from fastapi import FastAPI
-from proxy_router import router
+from proxy_server import router
 
 app = FastAPI()
 
-# Root route for health check
 @app.get("/")
 async def root():
-    return {"message": "Proxy server is running."}
+    return {"message": "Janitor AI NVIDIA Proxy is running"}
 
-# Include the proxy router
+# Attach the proxy routes
 app.include_router(router)
