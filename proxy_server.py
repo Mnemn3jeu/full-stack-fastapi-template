@@ -27,4 +27,14 @@ async def proxy(request: Request, path: str):
         try:
             if method in ["post", "put", "patch"]:
                 body = await request.body()
-                pro
+                proxied_response = await req_method(target_url, headers=headers, content=body)
+            else:
+                proxied_response = await req_method(target_url, headers=headers, params=request.query_params)
+
+            return Response(
+                content=proxied_response.content,
+                status_code=proxied_response.status_code,
+                media_type=proxied_response.headers.get("content-type")
+            )
+        except Exception as e:
+            return Response(content=f"Proxy error: {str(e)}", status_code=500)
