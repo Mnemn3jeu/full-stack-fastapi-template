@@ -40,3 +40,5 @@ async def proxy(request: Request, path: str):
             status_code=response.status_code,
             media_type=response.headers.get("content-type")
         )
+
+app = FastAPI()
