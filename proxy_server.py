@@ -6,7 +6,7 @@ import os
 app = FastAPI()
 
 JANITOR_API_URL = "https://integrate.api.nvidia.com/v1"
-API_KEY = os.getenv("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")
+API_KEY = os.getenv("NIM_API_KEY")  # Correct environment variable name
 
 @app.api_route("/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH"])
 async def proxy(request: Request, path: str):
@@ -48,4 +48,3 @@ async def proxy(request: Request, path: str):
 @app.get("/")
 async def root():
     return {"message": "Proxy server is running."}
-
